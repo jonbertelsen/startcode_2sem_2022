@@ -1,6 +1,6 @@
-package dat.startcode.config;
+package dat.startcode.model.config;
 
-import dat.startcode.persistence.ConnectionPool;
+import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

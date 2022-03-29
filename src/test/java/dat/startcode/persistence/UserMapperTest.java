@@ -1,7 +1,9 @@
 package dat.startcode.persistence;
 
-import dat.startcode.entities.User;
-import dat.startcode.exceptions.DatabaseException;
+import dat.startcode.model.entities.User;
+import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.UserMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

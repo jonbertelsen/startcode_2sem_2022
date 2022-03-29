@@ -1,6 +1,6 @@
-package dat.startcode.web;
+package dat.startcode.control;
 
-import dat.startcode.persistence.ConnectionPool;
+import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

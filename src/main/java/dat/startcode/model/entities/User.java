@@ -1,4 +1,4 @@
-package dat.startcode.entities;
+package dat.startcode.model.entities;
 
 import java.util.Objects;
 

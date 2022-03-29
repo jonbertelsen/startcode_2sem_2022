@@ -1,10 +1,10 @@
-package dat.startcode.web;
+package dat.startcode.control;
 
-import dat.startcode.config.ApplicationStart;
-import dat.startcode.entities.User;
-import dat.startcode.exceptions.DatabaseException;
-import dat.startcode.persistence.UserMapper;
-import dat.startcode.persistence.ConnectionPool;
+import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.User;
+import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.UserMapper;
+import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
