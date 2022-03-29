@@ -15,14 +15,14 @@
 
     <jsp:body>
 
-        <h3>Her kan du logge ind</h3>
+        <h3>You can log in here</h3>
 
         <form action="login" method="post">
-            <label for="email">Brugernavn: </label>
-            <input type="text" id="email" name="email"/>
-            <label for="kodeord">Kodeord: </label>
-            <input type="password" id="kodeord" name="kodeord"/>
-            <input type="submit"  value="Log ind"/>
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username"/>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password"/>
+            <input type="submit"  value="Log in"/>
         </form>
 
     </jsp:body>

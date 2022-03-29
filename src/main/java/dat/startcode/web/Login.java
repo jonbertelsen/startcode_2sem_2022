@@ -1,9 +1,9 @@
 package dat.startcode.web;
 
 import dat.startcode.config.ApplicationStart;
-import dat.startcode.entities.Bruger;
+import dat.startcode.entities.User;
 import dat.startcode.exceptions.DatabaseException;
-import dat.startcode.persistence.BrugerMapper;
+import dat.startcode.persistence.UserMapper;
 import dat.startcode.persistence.ConnectionPool;
 
 import javax.servlet.ServletException;
@@ -29,7 +29,7 @@ public class Login extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
-        // Man burde ikke havne her med et GET-request, så derfor sende man tilbage til forsiden
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
         doPost(request, response);
         response.sendRedirect("index.jsp");
     }
@@ -38,23 +38,23 @@ public class Login extends HttpServlet
     {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        session.setAttribute("bruger", null); // sætter session variabel
-        BrugerMapper brugerMapper = new BrugerMapper(connectionPool);
-        Bruger bruger = null;
-        String email = request.getParameter("email");
-        String kodeord = request.getParameter("kodeord");
+        session.setAttribute("user", null); // adding empty user object to session scope
+        UserMapper userMapper = new UserMapper(connectionPool);
+        User user = null;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         try
         {
-            bruger = brugerMapper.login(email, kodeord);
+            user = userMapper.login(username, password);
             session = request.getSession();
-            session.setAttribute("bruger", bruger); // sætter session variabel
+            session.setAttribute("user", user); // adding user object to session scope
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         catch (DatabaseException e)
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
-            request.setAttribute("fejlbesked", e.getMessage());
+            request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

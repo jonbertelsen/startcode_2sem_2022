@@ -1,6 +1,6 @@
 package dat.startcode.persistence;
 
-import dat.startcode.entities.Bruger;
+import dat.startcode.entities.User;
 import dat.startcode.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,19 +12,19 @@ import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BrugerMapperTest
+class UserMapperTest
 {
     private final static String USER = "root";
     private final static String PASSWORD = "root";
-    private final static String URL = "jdbc:mysql://localhost:3306/bibliotek_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
-    private static BrugerMapper brugerMapper;
+    private static UserMapper userMapper;
 
     @BeforeAll
     public static void setUpClass() {
             connectionPool = new ConnectionPool(USER, PASSWORD, URL);
-            brugerMapper = new BrugerMapper(connectionPool);
+            userMapper = new UserMapper(connectionPool);
     }
 
     @BeforeEach
@@ -33,10 +33,10 @@ class BrugerMapperTest
         try (Connection testConnection = connectionPool.getConnection()) {
             try (Statement stmt = testConnection.createStatement() ) {
                 // Remove all rows from all tables
-                stmt.execute("delete from bruger");
+                stmt.execute("delete from user");
                 // Indsæt et par brugere
-                stmt.execute("insert into bruger (email, kodeord, rolle) " +
-                        "values ('a@a.dk','1234','laaner'),('b@b.dk','1234','admin'), ('c@c.dk','1234','laaner')");
+                stmt.execute("insert into user (username, password, role) " +
+                        "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
             }
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
@@ -58,31 +58,31 @@ class BrugerMapperTest
     @Test
     void login() throws DatabaseException
     {
-        Bruger forventetBruger = new Bruger("a@a.dk","1234","laaner");
-        Bruger faktiskBruger = brugerMapper.login("a@a.dk","1234");
-        assertEquals(forventetBruger, faktiskBruger);
+        User expectedUser = new User("user","1234","user");
+        User actualUser = userMapper.login("user","1234");
+        assertEquals(expectedUser, actualUser);
     }
 
     @Test
     void invalidPasswordLogin() throws DatabaseException
     {
-        assertThrows(DatabaseException.class, () -> brugerMapper.login("a@a.dk","123"));
+        assertThrows(DatabaseException.class, () -> userMapper.login("user","123"));
     }
 
     @Test
-    void invalidEmailLogin() throws DatabaseException
+    void invalidUserNameLogin() throws DatabaseException
     {
-        assertThrows(DatabaseException.class, () -> brugerMapper.login("a@b.dk","1234"));
+        assertThrows(DatabaseException.class, () -> userMapper.login("bob","1234"));
     }
 
     @Test
-    void opretBruger() throws DatabaseException
+    void createUser() throws DatabaseException
     {
-        Bruger nyBruger = brugerMapper.opretBruger("ole@ole.dk", "1234", "laaner");
-        Bruger logPaaBruger = brugerMapper.login("ole@ole.dk","1234");
-        Bruger forventetBruger = new Bruger("ole@ole.dk", "1234", "laaner");
-        assertEquals(forventetBruger, nyBruger);
-        assertEquals(forventetBruger, logPaaBruger);
+        User newUser = userMapper.createUser("jill", "1234", "user");
+        User logInUser = userMapper.login("jill","1234");
+        User expectedUser = new User("jill", "1234", "user");
+        assertEquals(expectedUser, newUser);
+        assertEquals(expectedUser, logInUser);
 
     }
 }
