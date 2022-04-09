@@ -5,6 +5,16 @@
 Dette repository er lavet i forbindelse med 2. semester på
 Datamatikeruddannelsen i Lyngby og på Bornholm forår 2022.
 
+## Java version
+I pom.xml er diverse dependencies valgt, så projektet kan bygges og køres i Java 8. Nyere versioner af 
+Java vil formentlig også fungere, men vi har kun testet med version 8 og 11.
+
+## Tomcat
+Brug version 9.
+
+## Deployment på Droplet
+T.B.D.
+
 ## Du skal gøre følgende for at få webapplikationen i luften:
 
 1. Først skal du clone projektet eller downloade en zip-fil med projektet til din arbejdsstation.
