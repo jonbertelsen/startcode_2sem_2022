@@ -63,7 +63,7 @@
         </div>
         <div class="col">
             Datamatikeruddannelsen<br/>
-            2. semester forår 2022
+            2. semester efterår 2022
         </div>
     </div>
 

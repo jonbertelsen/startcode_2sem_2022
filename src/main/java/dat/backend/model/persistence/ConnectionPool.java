@@ -1,4 +1,4 @@
-package dat.startcode.model.persistence;
+package dat.backend.model.persistence;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 
 public class ConnectionPool
 {
+    // TODO: Change access credentials for MySql server as needed below:
+
     private HikariDataSource ds;
     private static String USER = "root";
     private static String PASSWORD = "root";

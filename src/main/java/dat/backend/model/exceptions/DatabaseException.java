@@ -1,4 +1,4 @@
-package dat.startcode.model.exceptions;
+package dat.backend.model.exceptions;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

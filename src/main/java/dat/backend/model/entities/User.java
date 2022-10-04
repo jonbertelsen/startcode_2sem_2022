@@ -1,4 +1,4 @@
-package dat.startcode.model.entities;
+package dat.backend.model.entities;
 
 import java.util.Objects;
 
@@ -13,18 +13,6 @@ public class User
         this.username = username;
         this.password = password;
         this.role = role;
-    }
-
-
-
-    @Override
-    public String toString()
-    {
-        return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
-                '}';
     }
 
     public String getUsername()
@@ -71,5 +59,15 @@ public class User
     public int hashCode()
     {
         return Objects.hash(getUsername(), getPassword(), getRole());
+    }
+
+    @Override
+    public String toString()
+    {
+        return "User{" +
+                "brugerNavn='" + username + '\'' +
+                ", kodeord='" + password + '\'' +
+                ", rolle='" + role + '\'' +
+                '}';
     }
 }
